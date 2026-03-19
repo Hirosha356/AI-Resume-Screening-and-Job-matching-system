@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Resume Results</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Resume Matching Results</h1>
+
+<table border="1" cellpadding="10" width="100%">
+
+<tr>
+<th>Candidate</th>
+<th>Match %</th>
+<th>Matched Skills</th>
+<th>Missing Skills</th>
+</tr>
+
+{% for r in results %}
+<tr>
+
+<td>
+
+<a href="/resume/{{ r.name }}">{{ r.name }}</a>
+
+</td>
+
+<td>
+{% if r.score == "Duplicate" %}
+Duplicate
+{% else %}
+{{ r.score }}%
+{% endif %}
+</td>
+
+<td>{{ r.matched }}</td>
+<td style="color:red;">{{ r.missing }}</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<h2>📋 Shortlisted Candidates (Score ≥ 20%)</h2>
+
+{% if shortlisted %}
+<ul>
+{% for c in shortlisted %}
+<li>{{ c.name }} - {{ c.score }}%</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No candidates shortlisted</p>
+{% endif %}
+
+<br>
+
+<a href="/">⬅ Go Home</a>
+
+</div>
+
+</body>
+</html>

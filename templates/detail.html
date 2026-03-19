@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Resume Details</title>
+<link rel="stylesheet" href="/static/style.css">
+
+<style>
+.box {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>{{ name }}</h1>
+
+<div class="box">
+<h3>✅ Matched Skills</h3>
+<ul>
+{% for s in matched.split(", ") %}
+<li>{{ s }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="box">
+<h3>❌ Missing Skills</h3>
+<ul>
+{% for s in missing.split(", ") %}
+<li>{{ s }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="box">
+<h3>📄 Resume Details</h3>
+
+<ul>
+<li><b>Role:</b> {{ sections.role }}</li>
+<li><b>Languages:</b> {{ sections.languages }}</li>
+<li><b>Frameworks:</b> {{ sections.frameworks }}</li>
+<li><b>Tools:</b> {{ sections.tools }}</li>
+<li><b>Projects:</b> {{ sections.projects }}</li>
+</ul>
+
+</div>
+
+{% if not sections.role and not sections.languages %}
+<div class="box">
+<h3>Full Resume Content</h3>
+<p>{{ text }}</p>
+</div>
+{% endif %}
+
+<br>
+
+<button onclick="history.back()">⬅ Go Back</button>
+
+</div>
+
+</body>
+
+</html>
